@@ -12,11 +12,9 @@ public class RecommendList extends JScrollPane{
 	private ChoiceList list ;
 	
 	public RecommendList(ChoiceList list) {
-		super(list);
 		this.list=list;
-		setPosition(new Point(0,0));
-		setLayout(null);
-		add(list);
+		this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setViewportView(list);
 		addKeyListener(new KeyListener() {
 			
 			@Override
@@ -34,20 +32,18 @@ public class RecommendList extends JScrollPane{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				list.dispatchEvent(e);
 				int keyCode = e.getKeyCode();
 				if(keyCode==KeyEvent.VK_ENTER){
 					list.replaceWord(getSelection());
-					removeAllHighlights();
 					setVisible(false);
 				}
 				else if(keyCode!=KeyEvent.VK_DOWN&&keyCode!=KeyEvent.VK_UP){
 					setVisible(false);
-					removeAllHighlights();
 				}
-					
+				removeAllHighlights();
 			}
 		});
+
 	}
 	
 	public void removeAllHighlights(){
@@ -66,8 +62,8 @@ public class RecommendList extends JScrollPane{
 	}
 	
 	public void setPosition(Point p){
-		list.setBounds(0, 0, getWidth(), getHeight());
-		this.setBounds(p.x, p.y, getWidth(), getHeight()-100);
+		list.setBounds(0, 0, 0, 0);
+		this.setBounds(p.x+10, p.y, getWidth(), getHeight()/2);
 	}
 	
 	public String getSelection() {
@@ -78,7 +74,6 @@ public class RecommendList extends JScrollPane{
 		return list.getWords();
 	}
 	public void setWords(String[] words) {
-		list.setListData(words);
 		list.setWords(words);
 	}
 	

@@ -2,7 +2,7 @@ package wanggd;
 
 public final class ErrorCorrection {
 	
-	private final static int MAX_HINTS = 8;
+	private final static int MAX_HINTS = 10;
 	
 	private static String[][] dictionary = null;
 	

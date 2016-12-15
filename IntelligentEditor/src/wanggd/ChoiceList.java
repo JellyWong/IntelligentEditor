@@ -16,12 +16,11 @@ public class ChoiceList extends JList<String>{
 	private MyTextArea textArea;
 
 	
-	public ChoiceList(Point p,String words[],MyTextArea textArea){//x,y是坐标，words[]是需要显示的内容
+	public ChoiceList(String words[],MyTextArea textArea){//x,y是坐标，words[]是需要显示的内容
 		super(words);
 		this.textArea=textArea;
 		setWords(words);
 		setFont(textArea.getFont());
-		setPosition(p);
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setBackground(Color.getHSBColor(0.45f,0.07f,1f));
 		addListSelectionListener(new ListSelectionListener() {
@@ -65,17 +64,14 @@ public class ChoiceList extends JList<String>{
 				index=i;
 			}
 		}
-		width=SwingUtilities.computeStringWidth(fm,words[index])+10;
-		//width=width*8<70?70:width*8;
-		//width=width>300?300:width;
-		return width;
+		width=SwingUtilities.computeStringWidth(fm,words[index]);
+		return width+30;
 	}
 	public int getHeight(){
 		if(words==null) return 0;
 		int height=words.length;
 		FontMetrics fm=getFontMetrics(getFont());
 		return height*fm.getHeight()+20;
-		//return (height>20)?200:height*20;
 	}
 	
 	public void setPosition(Point p){

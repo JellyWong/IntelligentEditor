@@ -1,11 +1,6 @@
 package wanggd;
 
 import java.awt.Font;
-
-
-
-import java.awt.Point;
-
 import javax.swing.JPanel;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -45,14 +40,13 @@ public class VTextArea extends JPanel{
 	public void initDictionary(){
 		doc = Utils.getWordList(); 
 		ErrorCorrection.init(doc);
-	}
+	}	
 	
 	public void initComponent(){
 		textArea = new MyTextArea();
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font(null, Font.BOLD, 20));
-		//list = new ChoiceList(new Point(10,10),new String[]{"Hello","World"},textArea);
-		list = new RecommendList(new ChoiceList(new Point(10,10),new String[]{"Hello","World"},textArea));
+		list = new RecommendList(new ChoiceList(new String[]{"Hello","World"},textArea));
 		
 		textArea.addCaretListener(new CaretListener() {
 
